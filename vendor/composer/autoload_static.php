@@ -11,12 +11,45 @@ class ComposerStaticInit7489df75e7f631b4737d7fa49a3afdc4
         array (
             'Cherif\\NewProject\\' => 18,
         ),
+        'A' => 
+        array (
+            'App\\Src\\Service\\' => 16,
+            'App\\Src\\Repository\\' => 19,
+            'App\\Src\\Entity\\' => 15,
+            'App\\Src\\Controller\\' => 19,
+            'App\\Core\\Abstract\\' => 18,
+            'App\\Core\\' => 9,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
         'Cherif\\NewProject\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
+        ),
+        'App\\Src\\Service\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/service',
+        ),
+        'App\\Src\\Repository\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/repository',
+        ),
+        'App\\Src\\Entity\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/entity',
+        ),
+        'App\\Src\\Controller\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/controller',
+        ),
+        'App\\Core\\Abstract\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/App/core/abstract',
+        ),
+        'App\\Core\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/App/core',
         ),
     );
 

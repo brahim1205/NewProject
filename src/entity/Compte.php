@@ -1,12 +1,18 @@
 <?php
-namespace App\Core;
+namespace App\Src\Entity;
 
-class Compte
+use App\Core\abstract\AbstractEntity;
+
+class Compte extends AbstractEntity
 {
     private int $id;
-    private string $solde;
+    private float $solde;
     private string $numero_compte;
     private string $statut_compte;
+    private string $typecompte;
+    private string $dateCreation;
+    private array $transaction;
+    
 
 
     public function __construct($id=0,$solde="",$numero_compte="",$statut_compte="")
@@ -15,6 +21,7 @@ class Compte
         $this->solde=$solde;
         $this->numero_compte=$numero_compte;
         $this->statut_compte=$statut_compte;
+        $this->transaction=[];
     }
 
 
@@ -97,4 +104,93 @@ class Compte
 
         return $this;
     }
+
+    /**
+     * Get the value of typecompte
+     */ 
+    public function getTypecompte()
+    {
+        return $this->typecompte;
+    }
+
+    /**
+     * Set the value of typecompte
+     *
+     * @return  self
+     */ 
+    public function setTypecompte($typecompte)
+    {
+        $this->typecompte = $typecompte;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of dateCreation
+     */ 
+    public function getDateCreation()
+    {
+        return $this->dateCreation;
+    }
+
+    /**
+     * Set the value of dateCreation
+     *
+     * @return  self
+     */ 
+    public function setDateCreation($dateCreation)
+    {
+        $this->dateCreation = $dateCreation;
+
+        return $this;
+    }
+
+
+    /**
+     * Get the value of transaction
+     */ 
+    public function getTransaction()
+    {
+        return $this->transaction;
+    }
+
+    /**
+     * Set the value of transaction
+     *
+     * @return  self
+     */ 
+    public function setTransaction($transaction)
+    {
+        $this->transaction = $transaction;
+
+        return $this;
+    }
+
+
+
+     public static function toObject($data):static
+     {
+        return new static(
+            $data['id']??0,
+            $data['solde']??0.0,
+            $data['dateCreation']??"",
+            $data['numero_compte']??"",
+            $data['statut_compte']?? TypeCompteEnum::PRINCIPALE
+        );
+     }
+
+
+    public function toArray():array
+    {
+        return
+        [
+            "id"=>$this->id,
+            "solde"=>$this->solde,
+            "numero_compte"=>$this->numero_compte,
+            "statut_compte"=>$this->statut_compte,
+            "transaction"=>array_map(fn($t) =>method_exists($t,'toArray') ? $t->toArray() : $t, $this->transaction),
+
+        ];
+    }
+
 }

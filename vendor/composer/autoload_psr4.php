@@ -7,4 +7,10 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Cherif\\NewProject\\' => array($baseDir . '/src'),
+    'App\\Src\\Service\\' => array($baseDir . '/src/service'),
+    'App\\Src\\Repository\\' => array($baseDir . '/src/repository'),
+    'App\\Src\\Entity\\' => array($baseDir . '/src/entity'),
+    'App\\Src\\Controller\\' => array($baseDir . '/src/controller'),
+    'App\\Core\\Abstract\\' => array($baseDir . '/App/core/abstract'),
+    'App\\Core\\' => array($baseDir . '/App/core'),
 );

@@ -1,5 +1,5 @@
 <?php
-namespace App\Core;
+namespace App\Src\Entity;
 
 class TypeUser
 {
@@ -52,5 +52,24 @@ class TypeUser
         $this->id = $id;
 
         return $this;
+    }
+
+    public static function toObject($data):static
+    {
+        return new static(
+            $data['id']??0,
+            $data['nom']??''
+
+        );
+    }
+
+    public function toArray():array
+    {
+        return
+        [
+            'id'=>$this->id,
+            'nom'=>$this->nom
+        ];
+
     }
 }

@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Core;
+namespace App\Src\Entity;
 
-class User extends TypeUser
+use App\Core\abstract\AbstractEntity;
+
+class User extends AbstractEntity
 { 
     private string $nom;
     private string $prenom;
@@ -12,9 +14,11 @@ class User extends TypeUser
     private string $photo_verso;
     private string $adresse;
     private string $numero_cni;
+    private string $login;
+    private string $password;
 
 
-    public function __construct($nom="",$prenom="",$id=0,$tel=0,$photo_recto="",$photo_verso="",$adresse="",$numero_cni)
+    public function __construct($id=0, $nom="",$prenom="",$tel="", $login="",$password="", $photo_recto="",$photo_verso="",$numero_cni='',)
     {
         $this->nom=$nom;
         $this->prenom=$prenom;
@@ -22,8 +26,9 @@ class User extends TypeUser
         $this->tel=$tel;
         $this->photo_recto=$photo_recto;
         $this->photo_verso=$photo_verso;
-        $this->adresse=$adresse;
         $this->numero_cni=$numero_cni;  
+        $this->login=$login;
+        $this->password=$password;
     }
 
     
@@ -187,5 +192,79 @@ class User extends TypeUser
         $this->numero_cni = $numero_cni;
 
         return $this;
+    }
+
+    /**
+     * Get the value of login
+     */ 
+    public function getLogin()
+    {
+        return $this->login;
+    }
+
+    /**
+     * Set the value of login
+     *
+     * @return  self
+     */ 
+    public function setLogin($login)
+    {
+        $this->login = $login;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of password
+     */ 
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set the value of password
+     *
+     * @return  self
+     */ 
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    public static function toObject($data):static
+    {
+         return new static (
+            $data['id']??0,
+            $data['nom']??"",
+            $data['prenom']??"",
+            $data['numerotelephone']??"",
+            $data['login ']??"",
+            $data['password ']??"",
+            $data['photorecto']??"",
+            $data['photoverso']??"",
+            $data['adresse']??"",
+            $data['numeroidentite']??"",
+        );
+    }
+
+    public function toArray(): array
+    {
+        return
+        [
+            'id'=>$this ->id,
+            'nom'=> $this ->nom,
+            'tel'=> $this ->tel,
+            'login'=> $this ->login,
+            'photo_recto'=>$this ->photo_recto,
+            'photo_verso'=> $this ->photo_verso,
+            'adresse'=> $this ->adresse,
+            'login'=> $this ->login,
+            'password'=> $this ->password,
+            'numero_cni'=> $this ->numero_cni
+            
+        ];
     }
 }
